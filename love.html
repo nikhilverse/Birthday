@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Birthday Special 💖</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Arial', sans-serif;
+      text-align: center;
+      background: #ffeff7;
+      overflow: hidden;
+    }
+    h1 {
+      color: #e60073;
+      margin-top: 50px;
+      font-size: 3rem;
+      animation: pulse 2s infinite;
+    }
+    @keyframes pulse {
+      0% { transform: scale(1); }
+      50% { transform: scale(1.1); }
+      100% { transform: scale(1); }
+    }
+    .btn {
+      padding: 15px 30px;
+      font-size: 18px;
+      border: none;
+      border-radius: 25px;
+      cursor: pointer;
+      background: #ff4d94;
+      color: white;
+      margin: 20px;
+      transition: 0.3s;
+    }
+    .btn:hover {
+      background: #e60073;
+    }
+    #questionBox {
+      position: absolute;
+      background: white;
+      padding: 20px;
+      border-radius: 15px;
+      box-shadow: 0px 4px 15px rgba(0,0,0,0.2);
+      display: none;
+    }
+    #blastMessage {
+      display: none;
+      font-size: 2rem;
+      color: #ff0066;
+      margin-top: 50px;
+      animation: fadeIn 2s forwards;
+    }
+    @keyframes fadeIn {
+      from {opacity: 0;}
+      to {opacity: 1;}
+    }
+    .hearts {
+      position: fixed;
+      top: -10px;
+      font-size: 24px;
+      animation: fall 5s linear infinite;
+    }
+    @keyframes fall {
+      0% {transform: translateY(0);}
+      100% {transform: translateY(100vh);}
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Yay 🎉 You Won My Heart 💖</h1>
+  <button class="btn" onclick="startLoveGame()">Click Here</button>
+
+  <!-- Question box -->
+  <div id="questionBox">
+    <p style="font-size: 20px; color: #e60073;">Do you love me? 💕</p>
+    <button class="btn" onclick="yesClicked()">Yes 💖</button>
+    <button class="btn" onclick="askAgain()">No 🙈</button>
+  </div>
+
+  <!-- Final message -->
+  <div id="blastMessage">
+    <h2>I Love You Too ❤️ Happy Birthday 🎂🎉</h2>
+    <p>"On your special day, I just want you to know that my heart belongs to you forever 💕"</p>
+    <p>"Every moment with you is magical, and today I celebrate YOU ✨"</p>
+  </div>
+
+  <script>
+    const questionBox = document.getElementById("questionBox");
+    const blastMessage = document.getElementById("blastMessage");
+
+    function startLoveGame() {
+      questionBox.style.display = "block";
+      moveBox(); // place first time
+    }
+
+    function moveBox() {
+      // random position inside window
+      const x = Math.random() * (window.innerWidth - 200);
+      const y = Math.random() * (window.innerHeight - 100);
+      questionBox.style.left = `${x}px`;
+      questionBox.style.top = `${y}px`;
+    }
+
+    function askAgain() {
+      moveBox(); // move to another position
+    }
+
+    function yesClicked() {
+      questionBox.style.display = "none";
+      blastMessage.style.display = "block";
+      createHearts();
+    }
+
+    function createHearts() {
+      setInterval(() => {
+        const heart = document.createElement("div");
+        heart.classList.add("hearts");
+        heart.innerHTML = "💖";
+        heart.style.left = Math.random() * window.innerWidth + "px";
+        heart.style.animationDuration = (2 + Math.random() * 3) + "s";
+        document.body.appendChild(heart);
+        setTimeout(() => heart.remove(), 5000);
+      }, 300);
+    }
+  </script>
+</body>
+</html>-->
+

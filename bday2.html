@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Happy Birthday ❤️</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background: linear-gradient(to right, #ff9a9e, #fad0c4);
+      color: white;
+      overflow-x: hidden;
+    }
+
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      background: rgba(0,0,0,0.5);
+      padding: 10px;
+      text-align: center;
+      z-index: 1000;
+    }
+    nav a {
+      color: #fff;
+      text-decoration: none;
+      margin: 0 15px;
+      font-size: 18px;
+    }
+
+    /* Slideshow */
+    .slideshow {
+      width: 100%;
+      height: 400px;
+      position: relative;
+      overflow: hidden;
+      margin-top: 50px;
+    }
+    .slide {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      opacity: 0;
+      transition: opacity 1s ease-in-out;
+    }
+    .slide.active {
+      opacity: 1;
+    }
+    .slide img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border-radius: 15px;
+    }
+
+    .message {
+      padding: 40px;
+      text-align: center;
+      font-size: 20px;
+      max-width: 900px;
+      margin: auto;
+      background: rgba(0,0,0,0.5);
+      border-radius: 20px;
+    }
+
+    /* Falling hearts */
+    .heart {
+      position: fixed;
+      top: -10px;
+      font-size: 20px;
+      color: red;
+      animation: fall 5s linear infinite;
+    }
+    @keyframes fall {
+      0% { transform: translateY(0); }
+      100% { transform: translateY(100vh); }
+    }
+
+    /* Game Section */
+    #game {
+      text-align: center;
+      padding: 60px;
+    }
+    .box {
+      display: inline-block;
+      width: 100px;
+      height: 100px;
+      margin: 15px;
+      background: pink;
+      border-radius: 10px;
+      cursor: pointer;
+      font-size: 30px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      transition: transform 0.3s;
+    }
+    .box:hover {
+      transform: scale(1.1);
+      background: #ff6b81;
+    }
+    #result {
+      font-size: 24px;
+      margin-top: 20px;
+      color: yellow;
+      font-weight: bold;
+    }
+    #nextLink {
+      display: inline-block;
+      margin-top: 15px;
+      padding: 10px 20px;
+      background: gold;
+      color: black;
+      text-decoration: none;
+      border-radius: 10px;
+      font-weight: bold;
+      display: none;
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <a href="#home">Home</a>
+    <a href="#game">Fun Game</a>
+  </nav>
+
+  <!-- Home Section -->
+  <section id="home">
+    <div class="slideshow">
+      <!-- 🔽 Replace with your pics -->
+      <div class="slide active"><img src="https://cakertown.in/wp-content/uploads/2022/05/CC008.jpg" alt="cake"></div>
+      <div class="slide"><img src="https://images.unsplash.com/photo-1615966650071-855b15f29ad1?fm=jpg&q=60&w=3000&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8c3Vuc2V0JTIwY291cGxlfGVufDB8fDB8fHww" alt="love"></div>
+      <div class="slide"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT1W3VteLew2VvkP8KbG0zRqpwRHB0_XAwoJA&s" alt="party"></div>
+    </div>
+
+    <div class="message">
+      <h1>Happy Birthday My Love ❤️</h1>
+      <p>
+        On this special day, I just want you to know how much you mean to me. 
+        You are not just my love, but also my best friend, my happiness, 
+        and the most beautiful blessing in my life. Every moment with you 
+        is a treasure I hold close to my heart. I promise to love you, 
+        support you, and be by your side no matter what life brings. 
+        Thank you for filling my world with love, joy, and endless smiles. 
+        I hope this year brings you as much happiness as you have given me. 
+        Wishing you the most magical birthday ever, my darling ❤️🎂
+      </p>
+    </div>
+  </section>
+
+  <!-- Game Section -->
+  <section id="game">
+    <h2>💖 Find the Hidden Heart! 💖</h2>
+    <p>One of these boxes hides my love. Can you find it? 🎁</p>
+    <div id="boxes"></div>
+    <p id="result"></p>
+    <a id="nextLink" href="love.html">Yay! You won my heart ❤️ (Click here)</a>
+  </section>
+
+<iframe width="0" height="0" 
+        src="https://www.youtube.com/embed/ZhhBlQC_5N8?autoplay=1&loop=1&playlist=ZhhBlQC_5N8" 
+        frameborder="0" 
+        allow="autoplay">
+</iframe>
+
+
+  <script>
+    // Slideshow
+    let slides = document.querySelectorAll('.slide');
+    let index = 0;
+    setInterval(() => {
+      slides[index].classList.remove('active');
+      index = (index + 1) % slides.length;
+      slides[index].classList.add('active');
+    }, 3000);
+
+    // Falling hearts
+    setInterval(() => {
+      let heart = document.createElement("div");
+      heart.classList.add("heart");
+      heart.style.left = Math.random() * window.innerWidth + "px";
+      heart.innerHTML = "❤️";
+      document.body.appendChild(heart);
+      setTimeout(() => heart.remove(), 5000);
+    }, 500);
+
+    // Game
+    let boxesContainer = document.getElementById("boxes");
+    let result = document.getElementById("result");
+    let nextLink = document.getElementById("nextLink");
+    let heartIndex = Math.floor(Math.random() * 6); // 6 boxes
+
+    for (let i = 0; i < 6; i++) {
+      let box = document.createElement("div");
+      box.classList.add("box");
+      box.innerHTML = "🎁";
+      box.onclick = function() {
+        if (i === heartIndex) {
+          box.innerHTML = "💖";
+          result.textContent = "Yay! You found my heart ❤️";
+          nextLink.style.display = "inline-block"; // show next step link
+        } else {
+          box.innerHTML = "❌";
+          result.textContent = "Oops! Try again 😘";
+        }
+      };
+      boxesContainer.appendChild(box);
+    }
+  </script>
+</body>
+</html>
